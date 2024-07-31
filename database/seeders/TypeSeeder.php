@@ -12,24 +12,28 @@ class TypeSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(Faker $faker): void
+    public function run(): void
     {
         $typesName = [
-            "Laravel",
-            "Back-end",
-            "Front-end",
-            "PHP",
-            "JavaScript",
-            "React",
-            "Vue",
-            "HTML",
+            [
+                "name" => "FrontEnd",
+                "color" => "#003cff",
+            ],
+            [
+                "name" => "BackEnd",
+                "color" => "#ff0000",
+            ],
+            [
+                "name" => "FullStack",
+                "color" => "#000000",
+            ],
         ];
-        foreach ($typesName as $typeName) {
-            $type = new Type();
-            $type-> name = $typeName;
-            $type-> color = $faker->unique()->safeHexColor();
-            $type->save();
 
+        foreach ($typesName as $typeName) {
+            Type::updateOrCreate(
+                ['name' => $typeName['name']],
+                ['color' => $typeName['color']]
+            );
         }
     }
 }

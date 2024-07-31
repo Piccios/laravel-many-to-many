@@ -30,9 +30,9 @@
                             name="nome" value="{{ old('nome', $project->nome ?? '') }}">
                         <label for="linguaggio">Linguaggi utilizzati</label>
                         <input type="text" class="form-control mb-3" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm" placeholder="Linguaggio" id="linguaggio"
-                            name="linguaggio" value="{{ old('linguaggio', $project->linguaggio ?? '') }}">
-                        <label for="type_id">Linguaggio principale</label>
+                            aria-describedby="inputGroup-sizing-sm" placeholder="Linguaggi" id="linguaggi"
+                            name="linguaggi" value="{{ old('linguaggio', $project->linguaggio ?? '') }}">
+                        <label for="type_id">Tipo progetto</label>
                         <select class="form-select form-select-lg mb-3" aria-label="Large select example">
                             @foreach ($types as $type)
                                 <option value='{{ $type->id }}'>{{ $type->name }}</option>
