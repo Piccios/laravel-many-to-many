@@ -10,9 +10,10 @@
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Linguaggio principale</th>
+                            <th scope="col">Categoria</th>
                             <th scope="col">Nome del progetto</th>
-                            <th scope="col">Linguaggii utilizzati</th>
+
+                            <th scope="col">Tecnologia</th>
                             <th scope="col">link alla repository</th>
                             <th scope="col"></th>
                         </tr>
@@ -22,7 +23,16 @@
                             <th scope="row">{{ $project->id }}</th>
                             <td><span class="badge" style="background:{{ $project->type->color }}">{{ $project->type->name }}</span></td>
                             <td>{{ $project->nome }}</td>
-                            <td>{{ $project->linguaggio }}</td>
+
+                            <td>
+                                @forelse ($project->Technologies as $technology)
+                                <span class="badge text" style="background-color: {{ $technology->color }}">
+                                    {{ $technology->name}}
+                                </span>
+                                @empty
+                                Nessuna tecnologia impostata
+                                @endforelse
+                            </td>
                             <td><a href=" {{ $project->url_repository }}">Click per visualizzare</a></td>
                             <td>
                                 <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}"
