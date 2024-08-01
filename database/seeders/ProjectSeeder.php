@@ -18,17 +18,14 @@ class ProjectSeeder extends Seeder
         $projectList = [
             [
                 "nome" => "laravel-auth",
-                "linguaggio" => "php",
                 "url_repository" => "https://github.com/Piccios/laravel-auth",
             ],
             [
                 "nome" => "laravel-auth-remplate",
-                "linguaggio" => "php",
                 "url_repository" => "https://github.com/Piccios/laravel-auth-template",
             ],
             [
                 "nome" => "laravel-base-crud",
-                "linguaggio" => "php",
                 "url_repository" => "https://github.com/Piccios/laravel-base-crud",
             ],
             [
@@ -38,52 +35,42 @@ class ProjectSeeder extends Seeder
             ],
             [
                 "nome" => "laravel-model-controller",
-                "linguaggio" => "php",
                 "url_repository" => "https://github.com/Piccios/laravel-model-controller",
             ],
             [
                 "nome" => "laravel-comics",
-                "linguaggio" => "php",
                 "url_repository" => "https://github.com/Piccios/laravel-comics",
             ],
             [
                 "nome" => "laravel-scaffolding-template",
-                "linguaggio" => "php",
                 "url_repository" => "https://github.com/Piccios/laravel-scaffolding-template",
             ],
             [
                 "nome" => "php-oop-2",
-                "linguaggio" => "php",
                 "url_repository" => "https://github.com/Piccios/php-oop-2",
             ],
             [
                 "nome" => "php-todo-list-json",
-                "linguaggio" => "php",
                 "url_repository" => "https://github.com/Piccios/php-todo-list-json",
             ],
             [
                 "nome" => "proj-html-vuejs",
-                "linguaggio" => "php, Vue, JavaScript",
                 "url_repository" => "https://github.com/Piccios/proj-html-vuejs",
             ],
             [
                 "nome" => "vite-boolflix",
-                "linguaggio" => "Vue",
                 "url_repository" => "https://github.com/Piccios/vite-boolflix",
             ],
             [
                 "nome" => "vite-yu-gi-oh",
-                "linguaggio" => "Vue, JavaScript",
                 "url_repository" => "https://github.com/Piccios/vite-yu-gi-oh",
             ],
             [
                 "nome" => "vite-comics",
-                "linguaggio" =>"Vue, JavaScript",
                 "url_repository" => "https://github.com/Piccios/vite-comics",
             ],
             [
                 "nome" => "vue-boolzapp",
-                "linguaggio" => "Vue",
                 "url_repository" => "https://github.com/Piccios/vue-boolzapp",
             ],
         ];
@@ -92,7 +79,6 @@ class ProjectSeeder extends Seeder
             $newProject = new Project();
             $newProject->type_id = $faker->randomElement($types);
             $newProject->nome = $project["nome"];
-            $newProject->linguaggio = $project["linguaggio"];
             $newProject->url_repository = $project["url_repository"];
             $newProject->save();
         }

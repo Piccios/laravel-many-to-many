@@ -12,7 +12,6 @@
                             <th scope="col">ID</th>
                             <th scope="col">Categoria</th>
                             <th scope="col">Nome del progetto</th>
-
                             <th scope="col">Tecnologia</th>
                             <th scope="col">link alla repository</th>
                             <th scope="col"></th>
@@ -33,6 +32,10 @@
                                 Nessuna tecnologia impostata
                                 @endforelse
                             </td>
+                            <div class="border border-dark">
+
+                                <img class="img-fluid" src="{{ asset('storage/' . $project->img) }}" alt="">
+                            </div>
                             <td><a href=" {{ $project->url_repository }}">Click per visualizzare</a></td>
                             <td>
                                 <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}"

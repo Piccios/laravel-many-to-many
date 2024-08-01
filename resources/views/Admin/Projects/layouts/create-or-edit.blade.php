@@ -6,7 +6,7 @@
 
 
             <div class="col-12">
-                <form action="@yield('form-action')" method="POST" id="creation_form">
+                <form action="@yield('form-action')" method="POST" id="creation_form" enctype="multipart/form-data">
                     @yield('form-method')
                     @csrf
                     <div class="mb-3">
@@ -28,25 +28,31 @@
                         <input type="text" class="form-control mb-3" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm" placeholder="Nome progetto" id="nome"
                             name="nome" value="{{ old('nome', $project->nome ?? '') }}">
-
-
                         <label for="Tecnologia">Tecnologia utilizzata</label>
-
-
-                            <div class="btn-group d-flex flex-wrap" role="group"
-                                aria-lable="Basic checkbox toggle button group">
-                                @foreach ($technologies as $technology)
-                                    <input name="technologies[]" type="checkbox" class="btn-check" id="tech-check-{{ $technology->id }}"
-                                        autocomplete="off" value="{{ $technology->id }}">
-                                    <label class="btn btn-outline-primary" for="tech-check-{{ $technology->id }}">{{ $technology->name }}</label>
-                                @endforeach
+                        <div class="btn-group d-flex flex-wrap mb-3" role="group"
+                            aria-lable="Basic checkbox toggle button group">
+                            @foreach ($technologies as $technology)
+                                <input name="technologies[]" type="checkbox" class="btn-check"
+                                    id="tech-check-{{ $technology->id }}" autocomplete="off" value="{{ $technology->id }}">
+                                <label class="btn btn-outline-primary"
+                                    for="tech-check-{{ $technology->id }}">{{ $technology->name }}</label>
+                            @endforeach
+                        </div>
+                        <label for="type_id">Tipo progetto</label>
+                        <select class="form-select form-select-lg mb-3" aria-label="Large select example">
+                            @foreach ($types as $type)
+                                <option value='{{ $type->id }}'>{{ $type->name }}</option>
+                            @endforeach
+                        </select>
+                        <div class="mb-3">
+                            <label for="image">Url immagine</label>
+                            <input type="file" name="image" id="image" class="form-control mb-2" minlength="4"
+                                maxlength="255" required value="{{ old('image', $post->image ?? '') }}">
+                            @error('image')
+                                <div class="alert alert-danger mb-3">
+                                    {{ message }}
+                                @enderror
                             </div>
-                            <label for="type_id">Tipo progetto</label>
-                            <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-                                @foreach ($types as $type)
-                                    <option value='{{ $type->id }}'>{{ $type->name }}</option>
-                                @endforeach
-                            </select>
                             <label for="url_repository">Url_repository</label>
                             <input type="text" class="form-control" aria-label="Sizing example input"
                                 aria-describedby="inputGroup-sizing-sm" placeholder="url_repository" id="url_repository"
@@ -55,6 +61,8 @@
                                 <input class="btn btn-warning" type="reset" value="Clear">
                                 <input class="btn btn-primary" type="submit" value="@yield('page-title')">
                             </div>
+                        </div>
+
                     </div>
                 </form>
             </div>

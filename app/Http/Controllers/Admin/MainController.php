@@ -10,13 +10,11 @@ use App\Models\Technology;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 
 {
-
-
-
     /**
      * Display a listing of the resource.
      */
@@ -44,6 +42,9 @@ class MainController extends Controller
     public function store(Request $request)
     {
         $data = $request->except('_token');
+       // prendo il file e lo metto nella storage / imgs / projects
+        $img_path = $request->file('img')->store('uploads/project', 'public');
+        $data['img'] = $img_path;
         $newProject = new Project($data);
         $newProject->save();
 
@@ -77,10 +78,14 @@ class MainController extends Controller
         $data = $request->validated();
         $data["nome"] = Auth::nome()->nome;
         $data["date"] = Carbon::now();
+        if ($project->img) {
+            Storage::disk('public')->delete($project->img);
+        }
+        $img_path = $request->file('img')->store('uploads/project', 'public');
+        $data['img'] = $img_path;
         $project->update($data);
         return redirect()->route('admin.projects.show', ['project' => $project->id])->with($project->nome . "e' stato aggiornato correttamente");
     }
-
 
     /**
      * Remove the specified resource from storage.
